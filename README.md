@@ -7,3 +7,4 @@ List of additional features:
 2. countdown (starts once player enter the game and ends after 2 minutes or when start overlay is visible).
 3. blink animation to the border of phrase letters if match player's selection.
 4. background images for the "lose" and "win" CSS class.
+5. on/off button to stop and play the music.
