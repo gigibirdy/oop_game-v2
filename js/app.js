@@ -4,39 +4,6 @@
 const btn = document.getElementById('btn__reset');
 //Add event listener to the start button.
 btn.addEventListener('click', function(e) {
-  //After a game is completed, click the start button will reset the gameboard.
-  if (overlay.classList[0] !== 'start') {
-    //remove all li elements from the phrase ul element.
-    const lis = phrase.children[0].children;
-    while (lis.length !== 0) {
-      let i = 0;
-      phrase.children[0].removeChild(lis[i]);
-      i++;
-    }
-    /*Enable all onscreen keyboard buttons and update each to use the key
-    CSS class.*/
-    const button = document.querySelectorAll('BUTTON:not(#btn__reset)');
-    for (let i = 0; i < button.length; i++) {
-      if (button[i].disabled = true) {
-        button[i].disabled = false;
-        button[i].setAttribute('class', 'key');
-      } else {
-        continue;
-      }
-    };
-    //reset the heart images to display the liveHeart.png image.
-    const hearts = document.querySelectorAll('img');
-    for (let i = 0; i < hearts.length; i++) {
-      hearts[i].src = 'images/liveHeart.png';
-    }
-    //remove the countdown.
-    const banner = document.getElementById('banner');
-    while (banner.children.length > 1) {
-      banner.removeChild(banner.lastChild);
-    }
-    //remove background music player.
-    document.body.removeChild(document.body.lastChild);
-  };
   //start new game, countdown and background music.
   newGame = new Game();
   newGame.startGame();
@@ -47,22 +14,30 @@ btn.addEventListener('click', function(e) {
 
 /*Add "click" event to each of the onscreen keyboard buttons. Each time when one of
 the button is clicked, call the handleInteraction() method on the game object.*/
-const keys = document.getElementsByClassName('key');
-for (let i = 0; i < keys.length; i++) {
-  keys[i].addEventListener('click', function(e) {
-    newGame.handleInteraction(e.target);
-  })
+const keyrows = document.getElementsByClassName('keyrow');
+
+for (let i = 0; i < keyrows.length; i++) {
+  let keys = keyrows[i].children;
+  for (let j = 0; j < keys.length; j++) {
+    keys[j].addEventListener('click', function(e) {
+      newGame.handleInteraction(e.target);
+    })
+  }
 };
 
 /*Add "click" event to each of 26 alphabet letters on user's physical keyboard.
 Each time when one of the key is pressed, call the handleInteraction() method on the game object.*/
-window.addEventListener('keyup', function(e) {
-  for (let i = 0; i < keys.length; i++) {
-    if (keys[i].textContent === e.key) {
-      newGame.handleInteraction(keys[i]);
-    }
+
+for (let i = 0; i < keyrows.length; i++) {
+  let keys = keyrows[i].children;
+  for (let j = 0; j < keys.length; j++) {
+    window.addEventListener('keydown', function(e) {
+      if (keys[j].innerHTML === e.key.toLowerCase()) {
+        newGame.handleInteraction(keys[j]);
+      }
+    })
   }
-});
+};
 
 /*CSS classes for the countdown, win & lose background images, and blink animation
 on show letter elements.*/
@@ -102,6 +77,14 @@ style.innerHTML = `
   0% {border-color: green;}
   50% {border-color: yellow;}
   100% {border-color: green;}
+}
+.musicBtn :active {
+    outline: none;
+    border: none;
+}
+.musicBtn:focus {
+    outline: none;
+    border: none;
 }`;
 
 document.head.appendChild(style);
