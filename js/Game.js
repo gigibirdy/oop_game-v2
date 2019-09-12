@@ -51,7 +51,7 @@ class Game {
     //End game if checkForWin() method returns true.
     if (this.checkForWin() === true) {
       this.gameOver();
-    };
+    }
   };
   removeLife() {
     //Replace one liveHeart with a lostHeart and increment the missed property by 1.
@@ -113,8 +113,6 @@ class Game {
     }
   };
   gameOver() {
-    //reset gameboard
-    this.reset();
     //display start screen overlay.
     overlay.style.visibility = 'visible';
     /*show "win" or "lose" message and corresponding overlay background images,
@@ -127,6 +125,8 @@ class Game {
       msg.textContent = 'Play one more time!';
       overlay.setAttribute('class', 'lose');
     }
+    //reset gameboard
+    this.reset();
   };
   setUpCountDown() {
     //setup the initial display of countdown.
@@ -141,7 +141,7 @@ class Game {
     let interval = setInterval(function() {
       /*player has 2 minutes to win this game. Display will show remaining
       minutes and seconds.*/
-      let countDownInSeconds = (120 - Math.floor((Date.now() - start) / 1000));
+      let countDownInSeconds = (10 - Math.floor((Date.now() - start) / 1000));
       let minutes = Math.floor(countDownInSeconds / 60);
       let seconds = Math.floor(countDownInSeconds % 60);
       const timer = document.getElementsByClassName('timer');

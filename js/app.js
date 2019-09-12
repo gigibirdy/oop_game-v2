@@ -32,7 +32,7 @@ for (let i = 0; i < keyrows.length; i++) {
   let keys = keyrows[i].children;
   for (let j = 0; j < keys.length; j++) {
     window.addEventListener('keydown', function(e) {
-      if (keys[j].innerHTML === e.key.toLowerCase()) {
+      if (keys[j].textContent === e.key) {
         newGame.handleInteraction(keys[j]);
       }
     })
