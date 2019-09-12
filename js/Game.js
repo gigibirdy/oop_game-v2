@@ -141,7 +141,7 @@ class Game {
     let interval = setInterval(function() {
       /*player has 2 minutes to win this game. Display will show remaining
       minutes and seconds.*/
-      let countDownInSeconds = (10 - Math.floor((Date.now() - start) / 1000));
+      let countDownInSeconds = (120 - Math.floor((Date.now() - start) / 1000));
       let minutes = Math.floor(countDownInSeconds / 60);
       let seconds = Math.floor(countDownInSeconds % 60);
       const timer = document.getElementsByClassName('timer');
