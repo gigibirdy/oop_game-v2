@@ -57,12 +57,10 @@ style.innerHTML = `
   color: green;
 }
 .lose{
-  background: url(images/lose.gif);
   background-position: center;
   background-size: cover;
 }
 .win{
-  background: url(images/win.gif);
   background-position: center;
   background-size: cover;
 }
